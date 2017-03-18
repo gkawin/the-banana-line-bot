@@ -1,4 +1,4 @@
 node_modules/
-index*
-
+build/
+npm-debug.log
 .env

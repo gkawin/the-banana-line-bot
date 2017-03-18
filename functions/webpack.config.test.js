@@ -4,12 +4,12 @@ const webpack = require('webpack')
 const DotEnv = require('dotenv-webpack')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
-  entry: path.resolve(BASE, 'src', 'functions.js'),
+  devtool: 'inline-cheap-module-source-map',
+  entry: path.join(BASE, 'test', 'index.js'),
   output: {
-    path: BASE,
-    filename: 'index.js',
-    libraryTarget: 'commonjs',
+    path: path.join(BASE, 'build/test'),
+    filename: 'test.bundle.js',
+    devtoolModuleFilenameTemplate: '[absolute-resource-path]',
   },
   target: 'node',
   node: {
@@ -28,8 +28,10 @@ module.exports = {
   plugins: [
     new DotEnv({ path: path.resolve(BASE, '..', '.env') }),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.IgnorePlugin(/react\/lib\/(?:ExecutionEnvironment|ReactContext)/),
+    new webpack.IgnorePlugin(/react\/addons/),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'testing'),
     }),
     new webpack.optimize.UglifyJsPlugin({ compress: {
       warnings: false,
