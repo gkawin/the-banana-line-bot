@@ -11,7 +11,7 @@ module.exports = {
     filename: 'test.bundle.js',
     devtoolModuleFilenameTemplate: '[absolute-resource-path]',
   },
-  target: 'node',
+  target: 'web',
   node: {
     fs: 'empty'
   },

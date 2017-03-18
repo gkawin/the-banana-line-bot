@@ -1,9 +1,9 @@
 import * as Functions from 'firebase-functions'
-import * as Admin from 'firebase-admin'
-import uuid from 'uuid'
+// import * as Admin from 'firebase-admin'
+// import uuid from 'uuid'
 
-Admin.initializeApp(Functions.config().firebase)
+// Admin.initializeApp(Functions.config().firebase)
 
 exports.bot = Functions.https.onRequest((req, res) => {
-  res.send(uuid.v4())
+  res.send('99999')
 })

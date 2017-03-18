@@ -1,3 +1,4 @@
+require('./specHelpers')
 const requireAllTests = context => context.keys().forEach(function (name) {
   describe(name, function () {
     context(name)
