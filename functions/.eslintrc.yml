@@ -1,0 +1,25 @@
+extends:
+  - eslint:recommended
+  - standard
+
+plugins:
+  - import
+
+parser: babel-eslint
+env:
+  node: true
+  browser: true
+  mocha: true
+  es6: true
+
+globals:
+  expect: true
+
+rules:
+  no-console: "warn"
+  no-undef: "error"
+  no-trailing-spaces: "off"
+  comma-dangle: "off"
+
+  import/named: "error"
+  import/namespace: "error"
