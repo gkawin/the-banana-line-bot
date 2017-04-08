@@ -14,6 +14,10 @@ app.use(bodyParser.json())
 app.use(helmet())
 
 app.use('/v1', App)
+app.use((error, req, res, next) => {
+  console.log(error.stack)
+  next()
+})
 
 app.listen(3000, () => {
   console.log('Sever is up!!!!!')
