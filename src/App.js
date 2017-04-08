@@ -7,6 +7,7 @@ import _ from 'lodash'
 const router = Express.Router()
 
 export default [
+  router.get('/ping', (req, res) => { res.status(200).json({ success: true }) })
   router.post('/webhook', (req, res, next) => {
     const events = req.body.events
     if (_.isEmpty(events)) {
