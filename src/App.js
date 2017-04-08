@@ -4,6 +4,7 @@ import Boom from 'boom'
 import axios from 'axios'
 import _ from 'lodash'
 
+import * as Services from './services'
 const router = Express.Router()
 
 export default [
@@ -16,23 +17,26 @@ export default [
     }
 
     const events = body.events
-    console.info(events)
     const reply = {
       replyToken: events[0].replyToken,
       messages: [
         {
-            "type":"text",
-            "text":"Hello, user"
+          'type': 'text',
+          'text': 'Hello, user'
         },
         {
-            "type":"text",
-            "text":"May I help you?"
+          'type': 'text',
+          'text': 'May I help you?'
         }
       ]
     }
 
-    axios.post(
+    Services.post(
       'https://api.line.me/v2/bot/message/reply',
+    )
+
+    axios.post(
+
       reply,
       {
         headers: {
