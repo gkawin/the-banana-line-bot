@@ -4,6 +4,7 @@
   "description": "banana line bot",
   "main": "index.js",
   "scripts": {
+    "build": "babel src -d lib",
     "dev": "NODE_ENV=development nodemon ./src/index.js --exec babel-node"
   },
   "repository": {
