@@ -15,7 +15,10 @@ app.use(helmet())
 
 app.use('/v1', App)
 app.use((error, req, res, next) => {
-  console.log(error.stack)
+  const errOutput = error.output
+  const statusCode = errOutput.statusCode
+  const payload = errOutput.payload
+  res.status(statusCode).json(payload)
   next()
 })
 
