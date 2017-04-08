@@ -5,6 +5,7 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 
 import App from './App'
+import ErrorHandler from './ErrorHandler'
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -15,13 +16,7 @@ app.use(bodyParser.json())
 app.use(helmet())
 
 app.use('/v1', App)
-app.use((error, req, res, next) => {
-  const errOutput = error.output
-  const statusCode = errOutput.statusCode
-  const payload = errOutput.payload
-  res.status(statusCode).json(payload)
-  next()
-})
+app.use(ErrorHandler)
 
 app.listen(port, () => {
   console.log('Sever is up!!!!!')
