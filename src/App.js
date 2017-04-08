@@ -9,13 +9,14 @@ const router = Express.Router()
 export default [
   router.get('/ping', (req, res) => { res.status(200).json({ success: true }) }),
   router.post('/webhook', (req, res, next) => {
-    const events = req.body.events
-    if (_.isEmpty(events)) {
+    const body = req.body
+    if (_.isEmpty(body)) {
       next(Boom.badRequest())
       return
     }
 
-
+    const events = body.events
+    console.info(events)
     const reply = {
       replyToken: events[0].replyToken,
       messages: [
@@ -39,7 +40,7 @@ export default [
           'Authorization': `Bearer ${process.env.ACCESS_TOKEN}`
         }
       }
-    ).then(() => {
+    ).then((response) => {
       res.status(200).json({ success: true })
     })
     .catch((err) => {
