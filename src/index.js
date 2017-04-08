@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import App from './App'
 
 const app = express()
+const port = process.env.PORT || 3000
 
 app.use(morgan('dev'))
 app.use(cors())
@@ -22,6 +23,6 @@ app.use((error, req, res, next) => {
   next()
 })
 
-app.listen(3000, () => {
+app.listen(port, () => {
   console.log('Sever is up!!!!!')
 })
