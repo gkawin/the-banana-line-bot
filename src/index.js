@@ -9,8 +9,9 @@ import ErrorHandler from './ErrorHandler'
 
 const app = express()
 const port = process.env.PORT || 3000
+const development = process.env.NODE_ENV === 'development'
 
-app.use(morgan('dev'))
+app.use(morgan((development) ? 'dev' : 'combined'))
 app.use(cors())
 app.use(bodyParser.json())
 app.use(helmet())
