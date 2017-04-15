@@ -4,7 +4,7 @@
   "description": "banana line bot",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV=production babel src -d lib",
+    "build": "NODE_ENV=production babel src -d lib --ignore spec.js",
     "dev": "NODE_ENV=development nodemon ./src/index.js --exec babel-node",
     "test": "env NODE_ENV=test npm run mocha -- ./src/**/*.spec.js --watch",
     "start": "npm run build && node index.js",
