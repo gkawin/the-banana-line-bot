@@ -1,10 +1,16 @@
 import assert from 'power-assert'
 
-import checkRequest from './checkRequest'
+import * as CheckRequest from './checkRequest'
 
 describe('check post request', () => {
-  it('should reject with empty request body', () => {
-    const result = checkRequest({})
-    assert(result === true)
+  describe('validation', () => {
+    it('should reject with empty request body', () => {
+      const result = CheckRequest.isValidation({ })
+      assert.equal(result, false)
+    })
+    it('should rejext with body request is not an object type', () => {
+      const result = CheckRequest.isValidation({ body: 'fooo' })
+      assert.equal(result, false)
+    })
   })
 })
