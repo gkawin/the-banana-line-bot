@@ -8,9 +8,5 @@ describe('check post request', () => {
       const result = CheckRequest.isValidation({ })
       assert.equal(result, false)
     })
-    it('should rejext with body request is not an object type', () => {
-      const result = CheckRequest.isValidation({ body: 'fooo' })
-      assert.equal(result, false)
-    })
   })
 })

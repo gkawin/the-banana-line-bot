@@ -1,15 +1,5 @@
-
-import Joi from 'joi'
+import _ from 'lodash'
 
 export function isValidation (request: Object) {
-  const schema = Joi.object().keys({
-    body: Joi.object().required()
-  })
-  const { error } = Joi.validate(request, schema)
-  return !error
-}
-
-export function isValidRequest (request: Object) {
-  return true
-  // console.info(validation(request))
+  return !(_.isEmpty(request.body))
 }
