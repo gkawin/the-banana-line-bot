@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import Config from '../../Config'
 
-export default async (req: Object, res: Object, next: Function) => {
+export default (req: Object, res: Object, next: Function) => {
   const validate = !(_.isEmpty(req.body))
   if (!validate) next(Boom.badRequest())
 
@@ -12,20 +12,22 @@ export default async (req: Object, res: Object, next: Function) => {
   const events = req.body.events
 
   for (const event of events) {
-    try {
-      console.info({
-        replyToken: event.replyToken,
-        content: {
-          type: 'text',
-          message: 'heelo from line sdk'
-        }
-      })
-      await client.replyMessage(event.replyToken, {
+    console.info({
+      replyToken: event.replyToken,
+      content: {
         type: 'text',
         message: 'heelo from line sdk'
-      })
-    } catch (err) {
-      next(err)
-    }
+      }
+    })
+    client.replyMessage(event.replyToken, [{
+      type: 'text',
+      message: 'heelo from line sdk'
+    }])
+    .then(result => {
+      console.info('result', result)
+    })
+    .catch(err => {
+      console.info('err', err)
+    })
   }
 }
