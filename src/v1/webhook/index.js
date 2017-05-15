@@ -13,6 +13,13 @@ export default async (req: Object, res: Object, next: Function) => {
 
   for (const event of events) {
     try {
+      console.info({
+        replyToken: event.replyToken,
+        content: {
+          type: 'text',
+          message: 'heelo from line sdk'
+        }
+      })
       await client.replyMessage(event.replyToken, {
         type: 'text',
         message: 'heelo from line sdk'
