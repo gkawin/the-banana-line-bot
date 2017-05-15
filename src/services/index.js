@@ -1,16 +1,21 @@
 
 import createRequest from './createRequest'
 import createReplyMessage from './createReplyMessage'
+import createGetProfile from './createGetProfile'
 require('dotenv').config()
 
-function getToken () {
-  return process.env.ACCESS_TOKEN
-}
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN
+const ENDPOINT_BASE = 'https://api.line.me'
 
-export const authRequest = createRequest(getToken())
+export const authRequest = createRequest(ACCESS_TOKEN)
 export const unAuthRequest = createRequest()
 
 export const reply = createReplyMessage({
   service: authRequest,
-  apiUrl: 'https://api.line.me/v2/bot/message/reply'
+  apiUrl: `${ENDPOINT_BASE}/v2/bot/message/reply`
+})
+
+export const getProfile = createGetProfile({
+  service: authRequest,
+  apiUrl: `${ENDPOINT_BASE}/v2/bot/profile/`
 })
