@@ -15,10 +15,10 @@ const development = process.env.NODE_ENV === 'development'
 
 app.use(morgan((development) ? 'dev' : 'combined'))
 app.use(cors())
+app.use(middleware(Config.LINE))
 app.use(bodyParser.json())
 app.use(helmet())
 
-app.use(middleware(Config.LINE))
 app.use('/v1', Routes)
 app.use(ErrorHandler)
 
