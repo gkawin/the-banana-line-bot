@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/gkawin/the-banana-line-bot#readme",
   "dependencies": {
+    "@line/bot-sdk": "^1.0.0",
     "axios": "^0.16.0",
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
